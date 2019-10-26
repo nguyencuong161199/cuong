@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#2C2C47"
     tools:context="com.mcuhq.simplebluetooth.MainActivity">
 
 
@@ -18,7 +19,13 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Toggle LED"
+            android:textColor="#FFFF"
+            android:shadowColor="#FFFF"
+            android:textColorHighlight="#FFFF"
+            android:textColorHint="#FFFF"
+            android:textColorLink="#FFFF"
+
+            android:text="HC-06"
             android:id="@+id/checkboxLED1"
             android:layout_marginTop="10dp"
             android:checked="false"
@@ -34,7 +41,9 @@
             android:layout_width="match_parent"
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content">
+
             <TextView
+                android:textColor="#F5A3A3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
@@ -47,8 +56,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
                 android:ellipsize="end"
+                android:textColor="#FFFFFF"
                 android:maxLines="1"
-                android:text="&lt;Read Buffer>"
+                android:text="&lt;data>"
                 android:id="@+id/readBuffer"
                 android:layout_centerHorizontal="true" />
         </LinearLayout>
@@ -61,6 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
+                android:textColor="#F5A3A3"
                 android:text="Status:"
                 android:ellipsize="end"
                 android:maxLines="1"
@@ -69,8 +80,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
-
-                android:text="&lt;Bluetooth Status>"
+                android:textColor="#FFFF"
+                android:text="&lt;Status>"
                 android:id="@+id/bluetoothStatus"
                 android:ellipsize="end"
                 android:maxLines="1"
@@ -84,7 +95,8 @@
             android:text="Bluetooth ON"
             android:id="@+id/scan"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/off" />
+            android:layout_toStartOf="@+id/off"
+            tools:ignore="RtlCompat" />
 
         <Button
             android:layout_width="match_parent"
@@ -93,7 +105,15 @@
             android:id="@+id/off"
             android:layout_alignBottom="@+id/scan"
             android:layout_toEndOf="@+id/PairedBtn"
-            android:layout_toRightOf="@+id/PairedBtn" />
+            android:layout_toRightOf="@+id/PairedBtn"
+
+          />
+
+        <Button
+            android:id="@+id/buton_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Write to File" />
 
         <Button
             android:layout_width="match_parent"
@@ -101,25 +121,28 @@
             android:text="Show paired Devices"
             android:id="@+id/PairedBtn"
             android:layout_below="@+id/scan"
-            android:layout_toStartOf="@+id/discover" />
+            android:layout_toStartOf="@+id/discover"
+            tools:ignore="RtlCompat" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Discover New Devices"
+
             android:id="@+id/discover"
             android:layout_below="@+id/off"
             android:layout_toRightOf="@+id/checkboxLED1"
             android:layout_toEndOf="@+id/checkboxLED1" />
 
         <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/devicesListView"
-            android:choiceMode="singleChoice"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
             android:layout_below="@+id/PairedBtn"
+            android:layout_alignEnd="@+id/off"
             android:layout_alignRight="@+id/off"
-            android:layout_alignEnd="@+id/off" />
+            android:cacheColorHint="#FFFF"
+            android:choiceMode="singleChoice" />
 
     </LinearLayout>
 
