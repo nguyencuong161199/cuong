@@ -101,8 +101,9 @@ public class MainActivity extends AppCompatActivity {
             public void handleMessage(android.os.Message msg){
                 if(msg.what == MESSAGE_READ){
                     String readMessage = null;
+                    byte[] bytes = (byte[]) msg.obj;
                     try {
-                        readMessage = new String((byte[]) msg.obj, "UTF-8");
+                        readMessage = new String(bytes, "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -110,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     //int a = Integer.valueOf(readMessage);
                     //for(int i=1; i<1000; i++)
                         sdata += readMessage+"\n";
+                    Log.d("Bluetooth_signal", readMessage + "");
                 }
 
                 if(msg.what == CONNECTING_STATUS){
@@ -355,13 +357,12 @@ public class MainActivity extends AppCompatActivity {
             while (true) {
                 try {
                     // Read from the InputStream
-                    bytes = mmInStream.available();
+                    bytes = mmInStream.read(buffer);
                     if(bytes != 0) {
                         buffer = new byte[1024];
                         SystemClock.sleep(100); //pause and wait for rest of data. Adjust this depending on your sending speed.
                         bytes = mmInStream.available(); // how many bytes are ready to be read?
                         bytes = mmInStream.read(buffer, 0, bytes); // record how many bytes we actually read
-                        Log.d("Bluetooth_signal", bytes + "");
                         mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer)
                                 .sendToTarget(); // Send the obtained bytes to the UI activity
                     }
